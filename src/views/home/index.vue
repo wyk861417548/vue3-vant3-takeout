@@ -36,8 +36,12 @@
 
 <script setup>
   import { ref,reactive } from 'vue';
+
   import Nav from './components/Nav.vue'
   import NavList from './components/NavList.vue'
+  
+  
+
   let active =  ref(0)
   let tabs = reactive([
     {title:'天天神犬',id:1},
