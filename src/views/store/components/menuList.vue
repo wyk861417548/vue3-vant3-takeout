@@ -8,7 +8,7 @@
       </h3>
       <p class="j-flex">
         <span class="text-money">辣</span>
-        <van-stepper v-model="num" />
+        <van-stepper :min="0" theme="round" button-size="22" v-model="item.num" @plus='handleCart(item,"plus")' @minus='handleCart(item,"reduce")' />
       </p>
     </aside>
   </nav>
@@ -16,9 +16,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {cartStore} from '@/store/cart.js'
+import { computed, ref } from 'vue';
 const props = defineProps(['vdata'])
-const num = ref(1);
+
+const store = cartStore();
+
+// 因为vdata 并没有进行双向绑定 所以  子组件操作父组件传过来的数据,并没有什么问题
+const handleCart= (data,type)=>{
+  // 添加
+  store.$patch((state)=>{
+    state.good[data.id] = data;
+    state.total= state.total + (type=='plus'?1:-1);
+    console.log('state',state.good,state.total);
+  })
+}
+
 </script>
 <style lang='less' scoped>
 nav{

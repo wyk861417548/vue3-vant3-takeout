@@ -10,6 +10,7 @@
   "dependencies": {
     "amfe-flexible": "^2.2.1",
     "core-js": "^3.6.5",
+    "pinia": "^2.0.32",
     "postcss-pxtorem": "5.1.1",
     "vant": "^3.4.3",
     "vue": "^3.0.0",

@@ -9,17 +9,13 @@
       <van-image class="logo" width="80" height="80" radius="4" fit="cover" :src="require('@/assets/images/home/1.png')" />
     </section>
 
-    <main>
-      <section class="tabs j-full-curbox">
-        <van-tabs v-model:active="curCom">
-          <van-tab :title="item.title" :name="item.index" v-for='(item,index) in tabs' :key='item.title'>
-            <component :is="tabs[curCom].com"></component>
-          </van-tab>
-        </van-tabs>
-      </section>
+    <main class="j-full-curbox">
+       <van-tabs v-model:active="curCom">
+        <van-tab :title="item.title" :name="item.index" v-for='(item) in tabs' :key='item.title'>
+          <component :is="tabs[curCom].com"></component>
+        </van-tab>
+      </van-tabs>
     </main>
-
-    <footer></footer>
   </div>
 
 </template>
@@ -31,7 +27,6 @@ import { useRoute } from 'vue-router';
 import menu from './components/menu.vue'
 import evaluate from './components/evaluate.vue'
 import business from './components/business.vue'
-
 const info = useRoute().query;
 let curCom = ref(0)
 
@@ -59,15 +54,14 @@ const tabs =[
     position: relative;
     flex: 1;
     z-index: 10;
-    section.tabs{
-      .van-tabs{
-        height: 100%;
-        .van-tabs__wrap{
-          height:44px;
-        }
+    .van-tabs{
+      height: 100%;
+      .van-tabs__wrap{
+        height:44px;
       }
       .van-tabs__content{
         height: calc(100% - 44px);
+        overflow: auto;
       }
     }
   }
