@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { reactive,ref,shallowRef} from 'vue';
+import {ref,shallowRef} from 'vue';
 import { useRoute } from 'vue-router';
 
 import menu from './components/menu.vue'

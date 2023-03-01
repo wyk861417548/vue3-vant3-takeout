@@ -17,28 +17,25 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import $request from '@/api/store.js'
+import { reactive,onMounted  } from 'vue';
 import { useRouter } from 'vue-router';
 
 let dataList = reactive([])
 const props = defineProps(['title'])
-
 const router = useRouter();
 
+onMounted(() => {
+  getStoreList()
+})
 
-const initData = ()=>{
-  for (let i = 0; i < 20; i++) {
-    dataList.push({
-      title:'标题' + i,
-      tip:'口味不错,香辣特选',
-      money: (Math.random()*50+10).toFixed(0),
-      score:(Math.random()*5+1).toFixed(1)
-    })
-  }
+// 获取商店列表
+const getStoreList = ()=>{
+  $request.list().then(({data})=>{
+    // 不要直接dataList = data; 不会触发双向绑定了 这是因为reactive数据被重新赋值后，原来数据的代理函数和最新的代理函数不是同一个
+    dataList.push(...data);
+  })
 }
-
-initData();
-
 </script>
 
 <style lang="less" scoped>

@@ -6,6 +6,7 @@ const router = createRouter({
   routes: [
     {path:'/',component:()=>import('@/views/index.vue')},
     {path:'/store',component:()=>import('@/views/store/index.vue')},
+    {path:'/store/order',component:()=>import('@/views/store/order.vue'),meta:{title:'购物车'}},
   ]
 })
 

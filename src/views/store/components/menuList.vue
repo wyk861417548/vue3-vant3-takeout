@@ -17,18 +17,16 @@
 
 <script setup>
 import {cartStore} from '@/store/cart.js'
-import { computed, ref } from 'vue';
 const props = defineProps(['vdata'])
 
 const store = cartStore();
 
 // 因为vdata 并没有进行双向绑定 所以  子组件操作父组件传过来的数据,并没有什么问题
 const handleCart= (data,type)=>{
-  // 添加
+  // 增删购物车
   store.$patch((state)=>{
     state.good[data.id] = data;
     state.total= state.total + (type=='plus'?1:-1);
-    console.log('state',state.good,state.total);
   })
 }
 

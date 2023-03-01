@@ -5,7 +5,7 @@ export const cartStore = defineStore('cart',{
     return {
       good:{},
 
-      total:0
+      total:0,
     }
   }
 })
