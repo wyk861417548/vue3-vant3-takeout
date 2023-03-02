@@ -22,7 +22,7 @@ import $request from '@/api/store.js'
 import { ref,onMounted, reactive,toRefs } from 'vue';
 import menuList from './menuList.vue'
 import {useRouter} from 'vue-router'
-import {cartStore} from '@/store/cart.js'
+import {cartStore} from '@/store/store.js'
 export default {
   components:{
     menuList

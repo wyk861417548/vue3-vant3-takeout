@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex b-b" v-for="(item, index) in props.vdata" :key="index">
+  <nav class="flex b-b" v-for="(item, index) in dataList" :key="index">
     <van-image width="60" height="60" radius="4" fit="cover" :src="require('@/assets/images/home/1.png')" />
     <aside class="flex-fit j-flex-flow ml-20">
       <h3 class="font16 font600 j-flex">
@@ -8,7 +8,7 @@
       </h3>
       <p class="j-flex">
         <span class="text-money">辣</span>
-        <van-stepper :min="0" theme="round" button-size="22" v-model="item.num" @plus='handleCart(item,"plus")' @minus='handleCart(item,"reduce")' />
+        <van-stepper :min="0" :max="99"  theme="round" button-size="22" v-model="item.num" @plus='handleCart(item,"plus")' @minus='handleCart(item,"reduce")' />
       </p>
     </aside>
   </nav>
@@ -16,12 +16,16 @@
 </template>
 
 <script setup>
-import {cartStore} from '@/store/cart.js'
+import {cartStore} from '@/store/store.js'
+import { ref } from 'vue';
+
+// 当数组和对象作为props传入的时候，虽然子组件无法更改props绑定，但是仍然可以更改对象或数组内部的值，但是对于vue来说禁止这样改动
+// 虽然可能生效，但是性能损失大，比较得不偿失
 const props = defineProps(['vdata'])
+const dataList = ref(props.vdata)
 
 const store = cartStore();
 
-// 因为vdata 并没有进行双向绑定 所以  子组件操作父组件传过来的数据,并没有什么问题
 const handleCart= (data,type)=>{
   // 增删购物车
   store.$patch((state)=>{
