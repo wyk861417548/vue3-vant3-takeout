@@ -22,9 +22,8 @@ import { ref } from 'vue';
 // 当数组和对象作为props传入的时候，虽然子组件无法更改props绑定，但是仍然可以更改对象或数组内部的值，但是对于vue来说禁止这样改动
 // 虽然可能生效，但是性能损失大，比较得不偿失
 const props = defineProps(['vdata'])
-const dataList = ref(props.vdata)
-
 const store = cartStore();
+const dataList = ref(props.vdata)
 
 const handleCart= (data,type)=>{
   // 增删购物车

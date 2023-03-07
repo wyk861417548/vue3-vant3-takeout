@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import {reactive,ref} from 'vue'
+import {onActivated, reactive,ref} from 'vue'
 const emits = defineEmits(['change'])
 let curCom = ref('home')
 const nav = reactive([
@@ -18,6 +18,12 @@ const nav = reactive([
   {title:'订单',com:'order',icon:'search'},
   {title:'我的',com:'mine',icon:'friends-o'},
 ])
+
+onActivated(()=>{
+  if(sessionStorage.__PAGECOM__){
+    curCom.value = sessionStorage.__PAGECOM__;
+  }
+})
 
 const changeCom = (com)=>{
   curCom.value = com

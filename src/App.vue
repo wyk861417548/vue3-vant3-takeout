@@ -1,15 +1,15 @@
 <template>
   <router-view v-slot="{ Component }">
     <keep-alive>
-      <component v-if="route.meta.keepAlive" :is="Component" />
+      <component :is="Component" v-if="route.meta.keepAlive" :key="route.path" />
     </keep-alive>
-    <component :is="Component" v-if="!route.meta.keepAlive"/>
+    <component :is="Component" v-if="!route.meta.keepAlive" :key="route.path" />
   </router-view>
-
+  <!-- <Loading></Loading> -->
 </template>
 
 <script setup>
+import Loading from '@/components/loading/index.vue'
 import { useRoute } from "vue-router";
 const route = useRoute();
-console.log('route',route);
 </script>

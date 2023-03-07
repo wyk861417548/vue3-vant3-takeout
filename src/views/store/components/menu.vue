@@ -19,16 +19,18 @@
 
 <script>
 import $request from '@/api/store.js'
-import { ref,onMounted, reactive,toRefs } from 'vue';
+import { ref,onMounted, reactive,toRefs, onActivated } from 'vue';
 import menuList from './menuList.vue'
 import {useRouter} from 'vue-router'
 import {cartStore} from '@/store/store.js'
+import { Toast } from 'vant';
 export default {
   components:{
     menuList
   },
   setup(){
     const router = useRouter();
+    const store = cartStore();
 
     const state = reactive({
       goods:[],
@@ -36,21 +38,32 @@ export default {
       activeIndex:0
     })
     
-    const store = cartStore(); 
+   
 
     onMounted(() => {
       getGoods();
     })
 
+    onActivated(()=>{
+      if(store.reset){
+        getGoods();
+        store.$patch((state)=>{
+          state.reset = false;
+        })
+      }
+    })
+
+    // 获取商品
     const getGoods = ()=>{
       $request.goods().then(({data}) => {
         state.goods = data;
       })
     }
 
-    // 将当前商铺购物车信息加入订单
+    // 前往立即购买界面
     const handleWaitOrder = ()=>{
-      router.push({path:'/store/order',query:{}})
+      if(store.total < 1)return Toast.fail('请选择商品');
+      router.push({path:'/store/order'})
     }
     
     return {

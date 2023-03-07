@@ -1,21 +1,19 @@
 <template>
-  <div>
+  <header></header>
 
-    <header></header>
+  <main></main>
 
-    <main></main>
-
-    <footer></footer>
-
-  </div>
+  <footer></footer>
 
 </template>
 
 <script setup>
-
+import { ref,reactive } from 'vue';
+const state = reactive({
+  date:''
+})
 </script>
-
-<style lang="less" scoped>
+<style lang='less' scoped>
   header{}
 
   main{}

@@ -12,7 +12,9 @@
     <main class="j-full-curbox">
        <van-tabs v-model:active="curCom">
         <van-tab :title="item.title" :name="item.index" v-for='(item) in tabs' :key='item.title'>
-          <component :is="tabs[curCom].com"></component>
+          <keep-alive>
+            <component :is="tabs[curCom].com"></component>
+          </keep-alive>
         </van-tab>
       </van-tabs>
     </main>

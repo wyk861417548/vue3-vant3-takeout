@@ -30,10 +30,10 @@ Mock.mock('/store/goods','get',{code:200,data:()=>{
     })
     for (let j = 0; j < 20; j++) {
       newList[i].children.push({
-        id:1000 + i,
+        id:1000*i + j,
         title:Mock.Random.ctitle(3,5),
         tip:Mock.Random.cword(5,10),
-        money: (Math.random()*50+10).toFixed(0),
+        money: (Math.random()*30+10).toFixed(2),
         score:(Math.random()*5+1).toFixed(1),
         num:0,
         img:Mock.Random.dataImage('100x100', '图片')
@@ -42,3 +42,8 @@ Mock.mock('/store/goods','get',{code:200,data:()=>{
   }
   return newList;
 }})
+
+Mock.mock('/store/good/add','post',{
+  code:200,
+  msg:'下单成功'
+})

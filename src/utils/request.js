@@ -62,6 +62,7 @@ export function request(params){
   })
 }
 
+
 // 请求返回处理
 function requestHandle(res,opt={},resolve,reject){
   if (res && res.data.code == 200 || opt.back) {
@@ -75,6 +76,7 @@ function requestHandle(res,opt={},resolve,reject){
 //错误统一处理
 function handle(res) {
 }
+
 
 
 
