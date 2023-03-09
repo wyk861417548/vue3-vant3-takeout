@@ -14,7 +14,6 @@ import Footer from '@/components/Footer/index.vue';
 import home from './home/index.vue';
 import mine from './mine/index.vue';
 import order from './order/index.vue';
-import cart from './cart/index.vue';
 import { useRoute } from 'vue-router';
 import { ref,onActivated } from 'vue';
 
@@ -23,7 +22,6 @@ export default {
     Footer,
     home,
     mine,
-    cart,
     order
   },
 

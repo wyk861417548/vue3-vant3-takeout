@@ -13,7 +13,7 @@
        <van-tabs v-model:active="curCom">
         <van-tab :title="item.title" :name="item.index" v-for='(item) in tabs' :key='item.title'>
           <keep-alive>
-            <component :is="tabs[curCom].com"></component>
+            <component :is="tabs[curCom].com" :info='info'></component>
           </keep-alive>
         </van-tab>
       </van-tabs>

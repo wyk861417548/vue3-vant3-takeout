@@ -14,7 +14,6 @@ const emits = defineEmits(['change'])
 let curCom = ref('home')
 const nav = reactive([
   {title:'首页',com:'home',icon:'home-o'},
-  {title:'购物车',com:'cart',icon:'cart-o'},
   {title:'订单',com:'order',icon:'search'},
   {title:'我的',com:'mine',icon:'friends-o'},
 ])

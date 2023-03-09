@@ -19,15 +19,15 @@ import { ref,reactive,getCurrentInstance } from 'vue';
 import {cartStore} from '@/store/store.js'
 import { Dialog} from 'vant';
 import $request from '@/api/store.js'
-import { useRouter } from 'vue-router';
+import { useRouter,useRoute } from 'vue-router';
 
 const store = cartStore();
+const route = useRoute();
 const router = useRouter();
 
 // 获取全局
 const {proxy}  = getCurrentInstance();
 
-console.log('proxy',proxy,proxy.$config);
 let Storage = localStorage.__GOOD__?JSON.parse(localStorage.__GOOD__):[];
 
 const onSubmit=()=>{
@@ -59,8 +59,9 @@ const onSubmit=()=>{
 const handleSetGood = ()=>{
   Storage.push({
     orderTime:new Date().format('yyyy-MM-dd hh-mm'),
+    title:route.query.title,
+    orderNo:proxy.$config.randomWord(8),
     list:store.good,
-    orderNo:proxy.$config.randomWord(8)
   })
   localStorage.__GOOD__ = JSON.stringify(Storage)
 }

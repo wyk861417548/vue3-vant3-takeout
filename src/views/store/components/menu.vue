@@ -12,7 +12,7 @@
     <van-action-bar-icon icon="chat-o" text="客服" dot />
     <van-action-bar-icon icon="cart-o" text="购物车" :badge="store.total" />
     <van-action-bar-icon icon="star" text="已收藏" color="#ff5000" />
-    <van-action-bar-button type="warning" text="加入购物车" @click="handleWaitOrder" />
+    <!-- <van-action-bar-button type="warning" text="加入购物车" @click="handleWaitOrder" /> -->
     <van-action-bar-button type="danger" text="立即购买" @click="handleWaitOrder"/>
   </van-action-bar>
 </template>
@@ -25,10 +25,11 @@ import {useRouter} from 'vue-router'
 import {cartStore} from '@/store/store.js'
 import { Toast } from 'vant';
 export default {
+  props:['info'],
   components:{
     menuList
   },
-  setup(){
+  setup(props){
     const router = useRouter();
     const store = cartStore();
 
@@ -63,7 +64,7 @@ export default {
     // 前往立即购买界面
     const handleWaitOrder = ()=>{
       if(store.total < 1)return Toast.fail('请选择商品');
-      router.push({path:'/store/order'})
+      router.push({path:'/store/order',query:props.info})
     }
     
     return {
